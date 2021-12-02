@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="TEXT_START_SCAN">Start Scan</string>
+    <string name="TEXT_START_RECORD">Start Record</string>
+    <string name="TEXT_ITEM">Title Item</string>
+    <string name="TEXT_DATE">Date Item</string>
+    <string name="TEXT_RESULT">Text Result</string>
+    <string name="TEXT_QR_CODE">QR Code</string>
+    <string name="TEXT_BARCODE">Barcode</string>
+    <string name="TITLE_TEXT_SCAN_RESULT">Scan Result</string>
+    <string name="TITLE_TEXT_SCAN_AGAIN">Scan Again</string>
+</resources>

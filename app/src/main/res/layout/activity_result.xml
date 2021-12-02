@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewTitleResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/TITLE_TEXT_SCAN_RESULT"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/view"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/GREY_500"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitleResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewItem"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_barcode"
+        app:layout_constraintTop_toBottomOf="@id/view"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewTitleItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/TEXT_ITEM"
+        android:textSize="24sp"
+        android:textColor="@color/PURPLE_500"
+        app:layout_constraintStart_toEndOf="@id/imageViewItem"
+        app:layout_constraintTop_toTopOf="@id/imageViewItem"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/TEXT_DATE"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/textViewTitleItem"
+        app:layout_constraintTop_toBottomOf="@id/textViewTitleItem"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/TEXT_RESULT"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewDate"/>
+
+    <ImageView
+        android:id="@+id/imageViewCopy"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_copy"
+        app:tint="@color/GREY_500"
+        app:layout_constraintStart_toEndOf="@id/textViewResult"
+        app:layout_constraintTop_toTopOf="@id/textViewResult"
+        app:layout_constraintBottom_toBottomOf="@id/textViewResult"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonScanAgain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/PURPLE_500"
+        android:text="@string/TITLE_TEXT_SCAN_AGAIN"
+        android:textColor="@color/WHITE"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

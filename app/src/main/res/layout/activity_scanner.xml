@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/container"
+        android:background="@color/BLACK"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:background="@drawable/background_shape"
+                android:layout_marginBottom="30dp"
+                android:layout_width="300dp"
+                android:layout_height="350dp"/>
+            <TextView
+                android:id="@+id/textView"
+                android:textSize="23sp"
+                android:textColor="@color/WHITE"
+                android:text="QR Code Reader Android\nUsing ML kit"
+                android:textAlignment="center"
+                android:textStyle="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButtonClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_back"
+                app:backgroundTint="@color/PURPLE_500"
+                app:elevation="0dp"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".activities.ScannerActivity">-->
+
+<!--    <androidx.appcompat.widget.AppCompatTextView-->
+<!--        android:id="@+id/textViewTitleScan"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:text="Scan Here..."-->
+<!--        android:textSize="24sp"-->
+<!--        android:textColor="@color/PURPLE_500"/>-->
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/cardViewScan"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_below="@id/textViewTitleScan"-->
+<!--        app:cardCornerRadius="20dp"-->
+<!--        app:cardElevation="0dp">-->
+
+<!--        <androidx.camera.view.PreviewView-->
+<!--            android:id="@+id/previewView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
+
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/floatingActionButtonClose"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:src="@drawable/ic_back"-->
+<!--        app:backgroundTint="@color/PURPLE_500"-->
+<!--        app:elevation="0dp"-->
+<!--        tools:ignore="ContentDescription" />-->
+
+<!--</RelativeLayout>-->
