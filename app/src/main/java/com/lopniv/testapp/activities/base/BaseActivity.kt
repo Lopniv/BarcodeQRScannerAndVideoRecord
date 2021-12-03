@@ -23,23 +23,6 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity()
     abstract fun getViewBinding(): VB
     abstract fun startAction()
 
-    fun View.loadingView(isLoading: Boolean)
-    {
-        if (isLoading)
-        {
-            this.visible()
-            window?.setFlags(
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-            )
-        }
-        else
-        {
-            this.gone()
-            window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-        }
-    }
-
     fun View.visible()
     {
         this.visibility = View.VISIBLE

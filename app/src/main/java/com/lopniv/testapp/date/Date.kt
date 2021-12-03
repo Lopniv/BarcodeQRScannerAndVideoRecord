@@ -6,10 +6,10 @@ import java.util.Date
 
 class Date()
 {
-    fun getCurrentDate(): String
+    fun getCurrentDate(stringPattern: String): String
     {
         val date: Date = Calendar.getInstance().time
-        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat(stringPattern, Locale.getDefault())
         return simpleDateFormat.format(date)
     }
 }

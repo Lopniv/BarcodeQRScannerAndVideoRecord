@@ -1,18 +1,16 @@
 package com.lopniv.testapp.activities
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.content.res.AppCompatResources
 import com.google.mlkit.vision.barcode.Barcode
 import com.lopniv.testapp.R
 import com.lopniv.testapp.activities.base.BaseActivity
+import com.lopniv.testapp.clipboard.Clipboard
 import com.lopniv.testapp.constants.StringConstants.STRING_FORMAT_RESULT
 import com.lopniv.testapp.constants.StringConstants.STRING_RESULT
 import com.lopniv.testapp.databinding.ActivityResultBinding
 import com.lopniv.testapp.date.Date
-
 
 class ResultActivity : BaseActivity<ActivityResultBinding>()
 {
@@ -20,6 +18,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
     private var _stringResult: String? = null
     private var _intResultFormat: Int? = null
     private val _date = Date()
+    private val _clipboard = Clipboard()
 
     companion object
     {
@@ -52,7 +51,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
             imageViewCopy.setOnClickListener { copyText() }
             buttonScanAgain.setOnClickListener { onBackPressed() }
             textViewResult.text = _stringResult
-            textViewDate.text = _date.getCurrentDate()
+            textViewDate.text = _date.getCurrentDate("dd.MM.yyyy HH:mm")
             if (_intResultFormat == Barcode.FORMAT_QR_CODE)
             {
                 textViewTitleItem.text = getString(R.string.TEXT_QR_CODE)
@@ -68,9 +67,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
 
     private fun copyText()
     {
-        val clipboard: ClipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("Result", _stringResult)
-        clipboard.setPrimaryClip(clip)
+        _stringResult?.let { _clipboard.copyToClipboard(this, it) }
         showToast("Result has been copied")
     }
 }

@@ -3,7 +3,6 @@ package com.lopniv.testapp.activities
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,6 +12,9 @@ import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_C
 import com.lopniv.testapp.constants.StringConstants.STRING_PATH_RECORD
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_RECORD
 import com.lopniv.testapp.databinding.ActivityRecordBinding
+import android.os.Environment
+import java.io.File
+
 
 class RecordActivity : BaseActivity<ActivityRecordBinding>()
 {
@@ -79,10 +81,7 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
     private fun recordVideo()
     {
         _registerForResultVideo.launch(
-            Intent(MediaStore.ACTION_VIDEO_CAPTURE).apply()
-            {
-                putExtra(MediaStore.EXTRA_OUTPUT, STRING_PATH_RECORD)
-            }
+            Intent(MediaStore.ACTION_VIDEO_CAPTURE)
         )
     }
 
@@ -100,6 +99,7 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
             }
             else
             {
+                _cameraRecord.openSettingPermission(this)
                 Log.e(STRING_TAG_RECORD, "No Camera Permission")
             }
         }

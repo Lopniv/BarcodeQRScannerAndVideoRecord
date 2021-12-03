@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -32,8 +31,7 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
     //region DECLARATION
 
     private var _cameraScanner: CameraScanner? = null
-    private var _cameraSelector: CameraSelector? = null
-    private var _analysisUseCase: ImageAnalysis? = null
+    private var _imageAnalysisUseCase: ImageAnalysis? = null
 
     //endregion
 
@@ -48,12 +46,11 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     private fun initViews()
     {
-        _binding.floatingActionButtonClose.setOnClickListener { onBackPressed() }
+        _binding.imageViewClose.setOnClickListener { onBackPressed() }
     }
 
     private fun setupCamera()
     {
-        _cameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
         ViewModelProvider(
             this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[CameraXViewModel::class.java]
@@ -65,7 +62,6 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
                         this,
                         _binding.previewView,
                         provider,
-                        _cameraSelector,
                         this)
                 }
                 if (_cameraScanner?.checkCameraPermission(this) == true)
@@ -88,10 +84,10 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     private fun bindAnalyseUseCase()
     {
-        _analysisUseCase = _cameraScanner?.bindAnalyseUseCase()
+        _imageAnalysisUseCase = _cameraScanner?.bindAnalyseUseCase()
         val executorCamera = Executors.newSingleThreadExecutor()
 
-        _analysisUseCase?.setAnalyzer(
+        _imageAnalysisUseCase?.setAnalyzer(
             executorCamera,
             { imageProxy ->
                 _cameraScanner?.getBarcodeScanner()?.let {
@@ -149,6 +145,7 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
             }
             else
             {
+                _cameraScanner?.openSettingPermission(this)
                 Log.e(STRING_TAG_SCANNER, "No Camera Permission")
             }
         }

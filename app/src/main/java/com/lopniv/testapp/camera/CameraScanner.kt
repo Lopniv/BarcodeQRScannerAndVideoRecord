@@ -21,7 +21,6 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.lopniv.testapp.constants.DoubleConstants
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_CAMERA_SCANNER
-import com.lopniv.testapp.interfaces.CameraInterface
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -30,19 +29,24 @@ class CameraScanner(
     private val _activity: Activity,
     private val _previewView: PreviewView,
     private val _processCameraProvider: ProcessCameraProvider,
-    private val _cameraSelector: CameraSelector?,
     private val _lifecycleOwner: LifecycleOwner
-): CameraInterface
+): Camera()
 {
 
 
     //region DECLARATION
 
     private var _previewUseCase: Preview? = null
-    private var _analysisUseCase: ImageAnalysis? = null
+    private var _imageAnalysisUseCase: ImageAnalysis? = null
+    private var _cameraSelector: CameraSelector? = null
 
     //endregion
 
+
+    init
+    {
+        _cameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+    }
 
     private val _intScreenAspectRatio: Int
         get()
@@ -80,8 +84,8 @@ class CameraScanner(
 
     fun stopScan()
     {
-        if (_analysisUseCase != null) {
-            _processCameraProvider.unbind(_analysisUseCase)
+        if (_imageAnalysisUseCase != null) {
+            _processCameraProvider.unbind(_imageAnalysisUseCase)
         }
     }
 
@@ -89,7 +93,7 @@ class CameraScanner(
     {
         stopCamera()
         _previewUseCase = Preview.Builder()
-            .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+            .setTargetAspectRatio(_intScreenAspectRatio)
             .setTargetRotation(_previewView.display?.rotation ?: 0)
             .build()
         _previewUseCase?.setSurfaceProvider(_previewView.surfaceProvider)
@@ -130,8 +134,8 @@ class CameraScanner(
     fun bindAnalyseUseCase(): ImageAnalysis
     {
         stopScan()
-        _analysisUseCase = ImageAnalysis.Builder()
-            .setTargetResolution(Size(240,340))
+        _imageAnalysisUseCase = ImageAnalysis.Builder()
+            .setTargetResolution(Size(100, 100))
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             .setTargetRotation(_previewView.display?.rotation ?: 0)
             .build()
@@ -143,7 +147,7 @@ class CameraScanner(
                     _processCameraProvider.bindToLifecycle(
                         _lifecycleOwner,
                         it,
-                        _analysisUseCase
+                        _imageAnalysisUseCase
                     )
                 }
             }
@@ -157,6 +161,6 @@ class CameraScanner(
             Log.e(STRING_TAG_CAMERA_SCANNER, illegalArgumentException.message ?: "IllegalArgumentException")
         }
 
-        return _analysisUseCase as ImageAnalysis
+        return _imageAnalysisUseCase as ImageAnalysis
     }
 }
