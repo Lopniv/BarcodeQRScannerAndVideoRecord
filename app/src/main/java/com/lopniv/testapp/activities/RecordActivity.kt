@@ -9,11 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.lopniv.testapp.activities.base.BaseActivity
 import com.lopniv.testapp.camera.CameraRecord
 import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_CODE
-import com.lopniv.testapp.constants.StringConstants.STRING_PATH_RECORD
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_RECORD
 import com.lopniv.testapp.databinding.ActivityRecordBinding
-import android.os.Environment
-import java.io.File
 
 
 class RecordActivity : BaseActivity<ActivityRecordBinding>()
