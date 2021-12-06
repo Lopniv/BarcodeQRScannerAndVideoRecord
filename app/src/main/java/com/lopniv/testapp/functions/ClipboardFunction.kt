@@ -1,11 +1,11 @@
-package com.lopniv.testapp.clipboard
+package com.lopniv.testapp.functions
 
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
 
-class Clipboard
+class ClipboardFunction
 {
     fun copyToClipboard(context: Context, stringData: String)
     {

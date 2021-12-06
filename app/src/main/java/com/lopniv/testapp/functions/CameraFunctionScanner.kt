@@ -1,4 +1,4 @@
-package com.lopniv.testapp.camera
+package com.lopniv.testapp.functions
 
 import android.app.Activity
 import android.graphics.Insets
@@ -25,12 +25,12 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class CameraScanner(
+class CameraFunctionScanner(
     private val _activity: Activity,
     private val _previewView: PreviewView,
     private val _processCameraProvider: ProcessCameraProvider,
     private val _lifecycleOwner: LifecycleOwner
-): Camera()
+): CameraFunction()
 {
 
 

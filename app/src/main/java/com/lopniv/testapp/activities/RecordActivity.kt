@@ -7,7 +7,7 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.lopniv.testapp.activities.base.BaseActivity
-import com.lopniv.testapp.camera.CameraRecord
+import com.lopniv.testapp.functions.CameraFunction
 import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_CODE
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_RECORD
 import com.lopniv.testapp.databinding.ActivityRecordBinding
@@ -16,7 +16,7 @@ import com.lopniv.testapp.databinding.ActivityRecordBinding
 class RecordActivity : BaseActivity<ActivityRecordBinding>()
 {
 
-    private val _cameraRecord = CameraRecord()
+    private val _cameraRecord = CameraFunction()
 
     companion object
     {

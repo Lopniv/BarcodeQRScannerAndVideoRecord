@@ -6,39 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonScan"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="1dp"
         android:background="@color/PURPLE_500"
         android:text="@string/TEXT_START_SCAN"
         android:textAllCaps="false"
         android:textColor="@color/WHITE"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/textView"
+        app:layout_constraintEnd_toEndOf="@id/guideLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRecord"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="1dp"
         android:background="@color/PURPLE_500"
         android:text="@string/TEXT_START_RECORD"
         android:textAllCaps="false"
         android:textColor="@color/WHITE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/textView"
+        app:layout_constraintStart_toStartOf="@id/guideLine"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

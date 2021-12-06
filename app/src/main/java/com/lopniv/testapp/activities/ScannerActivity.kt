@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.common.InputImage
 import com.lopniv.testapp.activities.base.BaseActivity
-import com.lopniv.testapp.camera.CameraScanner
+import com.lopniv.testapp.functions.CameraFunctionScanner
 import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_CODE
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_SCANNER
 import com.lopniv.testapp.databinding.ActivityScannerBinding
@@ -30,7 +30,7 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     //region DECLARATION
 
-    private var _cameraScanner: CameraScanner? = null
+    private var _cameraScanner: CameraFunctionScanner? = null
     private var _imageAnalysisUseCase: ImageAnalysis? = null
 
     //endregion
@@ -58,7 +58,7 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
             .observe(this) { provider: ProcessCameraProvider? ->
                 _cameraScanner = provider?.let()
                 {
-                    CameraScanner(
+                    CameraFunctionScanner(
                         this,
                         _binding.previewView,
                         provider,
@@ -117,8 +117,7 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
                         it.rawValue ?: "",
                         it.format
                     )
-                    _cameraScanner?.stopCamera()
-                    _cameraScanner?.stopScan()
+                    onPause()
                 }
             }
             .addOnFailureListener()
@@ -160,8 +159,8 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     override fun onPause()
     {
-        super.onPause()
         _cameraScanner?.stopCamera()
         _cameraScanner?.stopScan()
+        super.onPause()
     }
 }

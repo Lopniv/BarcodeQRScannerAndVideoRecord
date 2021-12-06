@@ -1,4 +1,4 @@
-package com.lopniv.testapp.camera
+package com.lopniv.testapp.functions
 
 import android.Manifest
 import android.app.Activity
@@ -12,18 +12,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_CODE
 
-abstract class Camera
+open class CameraFunction
 {
 
     /*
-    Class - Camera
-    Description : An abstract class that can be inherit to other camera classes, implements OOP
-                  functions which can be flexible functions to implement in any class and any changes
-                  are made only in this class.
-    Author      : Abdullah Fahmi.
-    Created on  : Friday, 03 December 2021.           Updated on : Friday, 03 December 2021.
-    Created by  : Abdullah Fahmi.                     Updated by : Abdullah Fahmi.
-    Version     : 1.0.:0
+    Note :
+    Class - Camera:
+    An open class that can be inherit to CameraScanner class or others, implements OOP
+    functions which can be flexible functions to implement in any class and any changes
+    are made only in this class.
     */
 
     fun checkCameraPermission(context: Context): Boolean

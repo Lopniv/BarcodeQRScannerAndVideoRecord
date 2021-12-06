@@ -6,19 +6,19 @@ import androidx.appcompat.content.res.AppCompatResources
 import com.google.mlkit.vision.barcode.Barcode
 import com.lopniv.testapp.R
 import com.lopniv.testapp.activities.base.BaseActivity
-import com.lopniv.testapp.clipboard.Clipboard
+import com.lopniv.testapp.functions.ClipboardFunction
 import com.lopniv.testapp.constants.StringConstants.STRING_FORMAT_RESULT
 import com.lopniv.testapp.constants.StringConstants.STRING_RESULT
 import com.lopniv.testapp.databinding.ActivityResultBinding
-import com.lopniv.testapp.date.Date
+import com.lopniv.testapp.functions.DateFunction
 
 class ResultActivity : BaseActivity<ActivityResultBinding>()
 {
 
     private var _stringResult: String? = null
     private var _intResultFormat: Int? = null
-    private val _date = Date()
-    private val _clipboard = Clipboard()
+    private val _date = DateFunction()
+    private val _clipboard = ClipboardFunction()
 
     companion object
     {

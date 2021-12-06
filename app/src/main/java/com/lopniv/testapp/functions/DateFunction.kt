@@ -1,10 +1,10 @@
-package com.lopniv.testapp.date
+package com.lopniv.testapp.functions
 
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Date
 
-class Date()
+class DateFunction
 {
     fun getCurrentDate(stringPattern: String): String
     {
