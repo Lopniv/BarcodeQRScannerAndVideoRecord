@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -76,16 +77,15 @@
         app:layout_constraintBottom_toBottomOf="@id/textViewResult"
         app:layout_constraintStart_toEndOf="@id/textViewResult"
         app:layout_constraintTop_toTopOf="@id/textViewResult"
-        app:tint="@color/GREY_500" />
+        app:tint="@color/GREY_500"
+        tools:ignore="ContentDescription" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonScanAgain"
+        style="@style/MainButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/PURPLE_500"
         android:text="@string/TITLE_TEXT_SCAN_AGAIN"
-        android:textAllCaps="false"
-        android:textColor="@color/WHITE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
