@@ -16,8 +16,6 @@ import com.lopniv.testapp.databinding.ActivityRecordBinding
 class RecordActivity : BaseActivity<ActivityRecordBinding>()
 {
 
-    private val _cameraRecord = CameraFunction()
-
     companion object
     {
         fun startRecord(context: Context) =
@@ -35,15 +33,15 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
 
     private fun initViews()
     {
-        if (_cameraRecord.checkCameraPresent(baseContext))
+        if (CameraFunction().checkCameraPresent(baseContext))
         {
-            if (_cameraRecord.checkCameraPermission(this))
+            if (CameraFunction().checkCameraPermission(this))
             {
                 recordVideo()
             }
             else
             {
-                _cameraRecord.getCameraPermission(this)
+                CameraFunction().getCameraPermission(this)
                 Log.e(STRING_TAG_RECORD, "No Camera Permission")
             }
             Log.i(STRING_TAG_RECORD, "Camera is detected")
@@ -90,13 +88,13 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
     {
         if (requestCode == INT_PERMISSION_CAMERA_REQUEST_CODE)
         {
-            if (_cameraRecord.checkCameraPermission(this))
+            if (CameraFunction().checkCameraPermission(this))
             {
                 recordVideo()
             }
             else
             {
-                _cameraRecord.openSettingPermission(this)
+                CameraFunction().openSettingPermission(this)
                 Log.e(STRING_TAG_RECORD, "No Camera Permission")
             }
         }

@@ -17,8 +17,6 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
 
     private var _stringResult: String? = null
     private var _intResultFormat: Int? = null
-    private val _date = DateFunction()
-    private val _clipboard = ClipboardFunction()
 
     companion object
     {
@@ -51,7 +49,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
             imageViewCopy.setOnClickListener { copyText() }
             buttonScanAgain.setOnClickListener { onBackPressed() }
             textViewResult.text = _stringResult
-            textViewDate.text = _date.getCurrentDate("dd.MM.yyyy HH:mm")
+            textViewDate.text = DateFunction().getCurrentDate("dd.MM.yyyy HH:mm")
             if (_intResultFormat == Barcode.FORMAT_QR_CODE)
             {
                 textViewTitleItem.text = getString(R.string.TEXT_QR_CODE)
@@ -67,7 +65,7 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
 
     private fun copyText()
     {
-        _stringResult?.let { _clipboard.copyToClipboard(this, it) }
+        _stringResult?.let { ClipboardFunction().copyToClipboard(this, it) }
         showToast("Result has been copied")
     }
 }

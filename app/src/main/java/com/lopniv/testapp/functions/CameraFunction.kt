@@ -15,14 +15,6 @@ import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_C
 open class CameraFunction
 {
 
-    /*
-    Note :
-    Class - Camera:
-    An open class that can be inherit to CameraScanner class or others, implements OOP
-    functions which can be flexible functions to implement in any class and any changes
-    are made only in this class.
-    */
-
     fun checkCameraPermission(context: Context): Boolean
     {
         return ContextCompat.checkSelfPermission(
