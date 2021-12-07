@@ -15,7 +15,7 @@ implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
 implementation 'com.google.mlkit:barcode-scanning:17.0.0'
 
 // CameraX library
-implementation "androidx.camera:camera-camera2:1.1.0-alpha11"
-implementation "androidx.camera:camera-lifecycle:1.1.0-alpha11"
-implementation "androidx.camera:camera-view:1.0.0-alpha29"
+implementation "androidx.camera:camera-camera2:1.0.2"
+implementation "androidx.camera:camera-lifecycle:1.0.2"
+implementation "androidx.camera:camera-view:1.0.0-alpha31"
 ```
