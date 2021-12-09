@@ -11,10 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.common.InputImage
 import com.lopniv.testapp.activities.base.BaseActivity
-import com.lopniv.testapp.functions.CameraFunctionScanner
+import com.lopniv.testapp.functions.CameraScannerFunction
 import com.lopniv.testapp.constants.IntConstants.INT_PERMISSION_CAMERA_REQUEST_CODE
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_SCANNER
 import com.lopniv.testapp.databinding.ActivityScannerBinding
+import com.lopniv.testapp.functions.SettingFunction
 import com.lopniv.testapp.viewmodels.CameraXViewModel
 import java.util.concurrent.Executors
 
@@ -30,7 +31,7 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     //region DECLARATION
 
-    private var _cameraScanner: CameraFunctionScanner? = null
+    private var _cameraScannerFunction: CameraScannerFunction? = null
     private var _imageAnalysisUseCase: ImageAnalysis? = null
 
     //endregion
@@ -56,21 +57,21 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
         )[CameraXViewModel::class.java]
             .processCameraProvider
             .observe(this) { provider: ProcessCameraProvider? ->
-                _cameraScanner = provider?.let()
+                _cameraScannerFunction = provider?.let()
                 {
-                    CameraFunctionScanner(
+                    CameraScannerFunction(
                         this,
                         _binding.previewView,
                         provider,
                         this)
                 }
-                if (_cameraScanner?.checkCameraPermission(this) == true)
+                if (_cameraScannerFunction?.checkCameraPermissionIsGranted(this) == true)
                 {
                     bindCameraUseCases()
                 }
                 else
                 {
-                    _cameraScanner?.getCameraPermission(this)
+                    _cameraScannerFunction?.getCameraPermission(this)
                     Log.e(STRING_TAG_SCANNER, "No Camera Permission")
                 }
             }
@@ -78,19 +79,19 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     private fun bindCameraUseCases()
     {
-        _cameraScanner?.bindPreviewUseCase()
+        _cameraScannerFunction?.bindPreviewUseCase()
         bindAnalyseUseCase()
     }
 
     private fun bindAnalyseUseCase()
     {
-        _imageAnalysisUseCase = _cameraScanner?.bindAnalyseUseCase()
+        _imageAnalysisUseCase = _cameraScannerFunction?.bindAnalyseUseCase()
         val executorCamera = Executors.newSingleThreadExecutor()
 
         _imageAnalysisUseCase?.setAnalyzer(
             executorCamera,
             { imageProxy ->
-                _cameraScanner?.getBarcodeScanner()?.let {
+                _cameraScannerFunction?.getBarcodeScanner()?.let {
                     processImageProxy(
                         it, imageProxy)
                 }
@@ -138,13 +139,13 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
     {
         if (requestCode == INT_PERMISSION_CAMERA_REQUEST_CODE)
         {
-            if (_cameraScanner?.checkCameraPermission(this) == true)
+            if (_cameraScannerFunction?.checkCameraPermissionIsGranted(this) == true)
             {
                 bindCameraUseCases()
             }
             else
             {
-                _cameraScanner?.openSettingPermission(this)
+                SettingFunction().openSettingPermission(this)
                 Log.e(STRING_TAG_SCANNER, "No Camera Permission")
             }
         }
@@ -159,8 +160,8 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
 
     override fun onPause()
     {
-        _cameraScanner?.stopCamera()
-        _cameraScanner?.stopScan()
+        _cameraScannerFunction?.stopCamera()
+        _cameraScannerFunction?.stopScan()
         super.onPause()
     }
 }

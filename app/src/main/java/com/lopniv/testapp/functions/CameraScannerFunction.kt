@@ -25,12 +25,12 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class CameraFunctionScanner(
+class CameraScannerFunction(
     private val _activity: Activity,
     private val _previewView: PreviewView,
     private val _processCameraProvider: ProcessCameraProvider,
     private val _lifecycleOwner: LifecycleOwner
-): CameraFunction()
+): CameraPermissionFunction()
 {
 
 

@@ -8,6 +8,10 @@
     <string name="TEXT_QR_CODE">QR Code</string>
     <string name="TEXT_BARCODE">Barcode</string>
     <string name="TEXT_SCAN_QR_OR_BARCODE"><![CDATA[Scan QR Code & Barcode]]></string>
+    <string name="TEXT_PLAY_STOP">Play or Stop</string>
     <string name="TITLE_TEXT_SCAN_RESULT">Scan Result</string>
     <string name="TITLE_TEXT_SCAN_AGAIN">Scan Again</string>
+    <string name="message_need_permission">Need Permissions</string>
+    <string name="message_permission">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="title_go_to_setting">GOTO SETTINGS</string>
 </resources>
