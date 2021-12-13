@@ -23,13 +23,16 @@ open class VideoRecordPermissionFunction: VideoRecordPermissionInterface
         ))
     }
 
-    override fun checkAllPermissionIsGranted(context: Context): Boolean {
-        return when {
+    override fun checkAllPermissionIsGranted(context: Context): Boolean
+    {
+        return when
+        {
             Build.VERSION.SDK_INT > Build.VERSION_CODES.P ->
             {
                 checkBaseVideoRecordPermission(context)
             }
-            Build.VERSION.SDK_INT > Build.VERSION_CODES.O -> {
+            Build.VERSION.SDK_INT > Build.VERSION_CODES.O ->
+            {
                 return if (!BasePermissionFunction().checkPermissionIsGranted(
                     context, Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ))
@@ -38,7 +41,8 @@ open class VideoRecordPermissionFunction: VideoRecordPermissionInterface
                 }
                 else checkBaseVideoRecordPermission(context)
             }
-            else -> {
+            else ->
+            {
                 return if (!BasePermissionFunction().checkPermissionIsGranted(
                     context, Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ))
@@ -56,7 +60,8 @@ open class VideoRecordPermissionFunction: VideoRecordPermissionInterface
         }
     }
 
-    override fun getAllPermission(activity: Activity) {
+    override fun getAllPermission(activity: Activity)
+    {
         BasePermissionFunction().getPermission(
             activity,
             arrayOf(

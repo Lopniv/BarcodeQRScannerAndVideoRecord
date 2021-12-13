@@ -56,7 +56,8 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
             this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[CameraXViewModel::class.java]
             .processCameraProvider
-            .observe(this) { provider: ProcessCameraProvider? ->
+            .observe(this)
+            { provider: ProcessCameraProvider? ->
                 _cameraScannerFunction = provider?.let()
                 {
                     CameraScannerFunction(
@@ -91,7 +92,8 @@ class ScannerActivity : BaseActivity<ActivityScannerBinding>()
         _imageAnalysisUseCase?.setAnalyzer(
             executorCamera,
             { imageProxy ->
-                _cameraScannerFunction?.getBarcodeScanner()?.let {
+                _cameraScannerFunction?.getBarcodeScanner()?.let()
+                {
                     processImageProxy(
                         it, imageProxy)
                 }

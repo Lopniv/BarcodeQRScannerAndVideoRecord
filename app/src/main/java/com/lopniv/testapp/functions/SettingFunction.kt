@@ -6,7 +6,8 @@ import android.net.Uri
 import android.provider.Settings
 import android.widget.Toast
 
-class SettingFunction {
+class SettingFunction
+{
 
     fun openSettingPermission(context: Context)
     {

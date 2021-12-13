@@ -48,7 +48,8 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
     //endregion
 
 
-    private val _consumerRecordEvent = Consumer<VideoRecordEvent> { event ->
+    private val _consumerRecordEvent = Consumer<VideoRecordEvent>
+    { event ->
         if (event !is VideoRecordEvent.Status)
             _videoRecordEvent = event
     }
@@ -87,9 +88,11 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
             this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         )[CameraXViewModel::class.java]
             .processCameraProvider
-            .observe(this) { provider: ProcessCameraProvider? ->
+            .observe(this)
+            { provider: ProcessCameraProvider? ->
                 _videoRecordFunction =
-                    provider?.let {
+                    provider?.let()
+                    {
                         VideoRecordFunction(
                             this,
                             _binding.previewView,
@@ -120,7 +123,8 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
 
     private fun setIsTimerRecord(boolean: Boolean)
     {
-        with(_binding){
+        with(_binding)
+        {
             if (boolean)
             {
                 groupTimer.visible()
@@ -138,11 +142,13 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
     }
 
     @SuppressLint("MissingPermission")
-    fun startRecord() {
+    fun startRecord()
+    {
         showUI(RecordStateEnum.RECORDING)
         val name = "TestAppRecording-" +
                 DateFunction().getCurrentDate("yyyyddMM") + ".mp4"
-        val contentValues = ContentValues().apply {
+        val contentValues = ContentValues().apply()
+        {
             put(MediaStore.Video.Media.DISPLAY_NAME, name)
         }
         val mediaStoreOutput = MediaStoreOutputOptions.Builder(
@@ -176,16 +182,21 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
         }
     }
 
-    private fun showUI(state: RecordStateEnum) {
-        with(_binding) {
-            when(state) {
-                RecordStateEnum.IDLE -> {
+    private fun showUI(state: RecordStateEnum)
+    {
+        with(_binding)
+        {
+            when(state)
+            {
+                RecordStateEnum.IDLE ->
+                {
                     setIsTimerRecord(false)
                     buttonCapture.visible()
                     buttonStop.invisible()
                     buttonCapture.setImageResource(com.lopniv.testapp.R.drawable.ic_record)
                 }
-                RecordStateEnum.RECORDING -> {
+                RecordStateEnum.RECORDING ->
+                {
                     setIsTimerRecord(true)
                     buttonStop.visible()
                     buttonCapture.invisible()
@@ -221,7 +232,8 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    override fun onResume() {
+    override fun onResume()
+    {
         super.onResume()
         setupCamera()
     }

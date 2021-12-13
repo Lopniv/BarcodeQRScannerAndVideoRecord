@@ -47,7 +47,8 @@ class VideoRecordFunction(
     private val _intScreenAspectRatio: Int
         get()
         {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+            {
                 val windowMetrics: WindowMetrics = _activity.windowManager.currentWindowMetrics
                 val insets: Insets = windowMetrics.windowInsets
                     .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
@@ -88,7 +89,8 @@ class VideoRecordFunction(
 
         try
         {
-            _cameraSelector.let {
+            _cameraSelector.let()
+            {
                 if (it != null)
                 {
                     _processCameraProvider.bindToLifecycle(

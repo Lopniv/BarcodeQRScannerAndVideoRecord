@@ -51,7 +51,8 @@ class CameraScannerFunction(
     private val _intScreenAspectRatio: Int
         get()
         {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+            {
                 val windowMetrics: WindowMetrics = _activity.windowManager.currentWindowMetrics
                 val insets: Insets = windowMetrics.windowInsets
                     .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
@@ -59,7 +60,9 @@ class CameraScannerFunction(
                     windowMetrics.bounds.width() - insets.left - insets.right,
                     windowMetrics.bounds.height() - insets.top - insets.bottom
                 )
-            } else {
+            }
+            else
+            {
                 val displayMetrics = DisplayMetrics().also { _previewView.display?.getRealMetrics(it) }
                 aspectRatio(displayMetrics.widthPixels, displayMetrics.heightPixels)
             }
@@ -77,14 +80,16 @@ class CameraScannerFunction(
 
     fun stopCamera()
     {
-        if (_previewUseCase != null) {
+        if (_previewUseCase != null)
+        {
             _processCameraProvider.unbind(_previewUseCase)
         }
     }
 
     fun stopScan()
     {
-        if (_imageAnalysisUseCase != null) {
+        if (_imageAnalysisUseCase != null)
+        {
             _processCameraProvider.unbind(_imageAnalysisUseCase)
         }
     }
@@ -100,8 +105,10 @@ class CameraScannerFunction(
 
         try
         {
-            _cameraSelector.let {
-                if (it != null) {
+            _cameraSelector.let()
+            {
+                if (it != null)
+                {
                     _processCameraProvider.bindToLifecycle(
                         _lifecycleOwner,
                         it,
@@ -142,8 +149,10 @@ class CameraScannerFunction(
 
         try
         {
-            _cameraSelector.let {
-                if (it != null) {
+            _cameraSelector.let()
+            {
+                if (it != null)
+                {
                     _processCameraProvider.bindToLifecycle(
                         _lifecycleOwner,
                         it,

@@ -36,7 +36,8 @@ class ResultActivity : BaseActivity<ActivityResultBinding>()
 
     override fun getViewBinding() = ActivityResultBinding.inflate(layoutInflater)
 
-    override fun startAction() {
+    override fun startAction()
+    {
         _stringResult = intent.extras?.getString(STRING_RESULT)
         _intResultFormat = intent.extras?.getInt(STRING_FORMAT_RESULT, 0)
         initViews()
