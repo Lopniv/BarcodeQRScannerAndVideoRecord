@@ -190,11 +190,6 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
                     buttonStop.visible()
                     buttonCapture.invisible()
                 }
-                else -> {
-                    val errorMsg = "Error: showUI($state) is not supported"
-                    Log.e(STRING_TAG_RECORD, errorMsg)
-                    return
-                }
             }
         }
     }
