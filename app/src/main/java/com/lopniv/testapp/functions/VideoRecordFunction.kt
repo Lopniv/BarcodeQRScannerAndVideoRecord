@@ -33,11 +33,16 @@ class VideoRecordFunction(
 
     //region DECLARATION
 
-    private var _cameraSelector: CameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+    private var _cameraSelector: CameraSelector? = null
     private var _previewUseCase: Preview? = null
 
     //endregion
 
+
+    init
+    {
+        _cameraSelector = CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+    }
 
     private val _intScreenAspectRatio: Int
         get()
@@ -66,8 +71,16 @@ class VideoRecordFunction(
         else AspectRatio.RATIO_16_9
     }
 
+    private fun stopCamera()
+    {
+        if (_previewUseCase != null) {
+            _processCameraProvider.unbind(_previewUseCase, _videoCapture)
+        }
+    }
+
     fun bindPreviewUseCase()
     {
+        stopCamera()
         _previewUseCase = Preview.Builder()
             .setTargetAspectRatio(_intScreenAspectRatio)
             .build()
@@ -76,12 +89,15 @@ class VideoRecordFunction(
         try
         {
             _cameraSelector.let {
-                _processCameraProvider.bindToLifecycle(
-                    _lifecycleOwner,
-                    it,
-                    _videoCapture,
-                    _previewUseCase
-                )
+                if (it != null)
+                {
+                    _processCameraProvider.bindToLifecycle(
+                        _lifecycleOwner,
+                        it,
+                        _videoCapture,
+                        _previewUseCase
+                    )
+                }
             }
         }
         catch (illegalStateException: IllegalStateException)

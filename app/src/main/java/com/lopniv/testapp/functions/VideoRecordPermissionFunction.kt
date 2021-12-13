@@ -10,42 +10,49 @@ import com.lopniv.testapp.interfaces.VideoRecordPermissionInterface
 open class VideoRecordPermissionFunction: VideoRecordPermissionInterface
 {
 
-    override fun checkAllPermissionIsGranted(context: Context): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            return if (!BasePermissionFunction().checkPermissionIsGranted(
-                    context, Manifest.permission.CAMERA
-                ))
-            {
-                false
-            }
-            else (BasePermissionFunction().checkPermissionIsGranted(
-                context, Manifest.permission.RECORD_AUDIO
+    private fun checkBaseVideoRecordPermission(context: Context): Boolean
+    {
+        return if (!BasePermissionFunction().checkPermissionIsGranted(
+                context, Manifest.permission.CAMERA
             ))
-        }
-        else
         {
-            return if (!BasePermissionFunction().checkPermissionIsGranted(
-                    context, Manifest.permission.CAMERA
-                ))
+            false
+        }
+        else (BasePermissionFunction().checkPermissionIsGranted(
+            context, Manifest.permission.RECORD_AUDIO
+        ))
+    }
+
+    override fun checkAllPermissionIsGranted(context: Context): Boolean {
+        return when {
+            Build.VERSION.SDK_INT > Build.VERSION_CODES.P ->
             {
-                false
+                checkBaseVideoRecordPermission(context)
             }
-            else if (!BasePermissionFunction().checkPermissionIsGranted(
-                    context, Manifest.permission.RECORD_AUDIO
-                ))
-            {
-                false
-            }
-            else if (!BasePermissionFunction().checkPermissionIsGranted(
+            Build.VERSION.SDK_INT > Build.VERSION_CODES.O -> {
+                return if (!BasePermissionFunction().checkPermissionIsGranted(
                     context, Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ))
-            {
-                false
+                {
+                    false
+                }
+                else checkBaseVideoRecordPermission(context)
             }
-            else BasePermissionFunction().checkPermissionIsGranted(
-                context, Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
+            else -> {
+                return if (!BasePermissionFunction().checkPermissionIsGranted(
+                    context, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ))
+                {
+                    false
+                }
+                else if (!BasePermissionFunction().checkPermissionIsGranted(
+                    context, Manifest.permission.READ_EXTERNAL_STORAGE
+                ))
+                {
+                    false
+                }
+                else checkBaseVideoRecordPermission(context)
+            }
         }
     }
 
