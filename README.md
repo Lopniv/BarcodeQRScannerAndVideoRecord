@@ -23,3 +23,7 @@ implementation "androidx.camera:camera-view:1.0.0-alpha31"
 ```
 Code reference:
 [Camera Sample Repository](https://github.com/android/camera-samples "Camera Sample Repository")
+
+# Screenshoot
+<img src="https://github.com/Lopniv/BarcodeQRScannerAndVideoRecord/blob/main/Screenshoot recording page.jpg" width="20%"></img>
+<img src="https://github.com/Lopniv/BarcodeQRScannerAndVideoRecord/blob/main/Screenshoot scan page.jpg" width="20%"></img>
