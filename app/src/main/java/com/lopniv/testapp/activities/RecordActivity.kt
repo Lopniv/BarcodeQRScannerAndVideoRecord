@@ -16,8 +16,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.util.Consumer
 import androidx.lifecycle.ViewModelProvider
 import com.lopniv.testapp.activities.base.BaseActivity
+import com.lopniv.testapp.constants.EnumConstant.ENUM_RECORD_STATE
 import com.lopniv.testapp.constants.IntConstants
-import com.lopniv.testapp.constants.RecordStateEnum
 import com.lopniv.testapp.constants.StringConstants
 import com.lopniv.testapp.constants.StringConstants.STRING_TAG_RECORD
 import com.lopniv.testapp.databinding.ActivityRecordBinding
@@ -144,7 +144,7 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
     @SuppressLint("MissingPermission")
     fun startRecord()
     {
-        showUI(RecordStateEnum.RECORDING)
+        showUI(ENUM_RECORD_STATE.RECORDING)
         val name = "TestAppRecording-" +
                 DateFunction().getCurrentDate("yyyyddMM") + ".mp4"
         val contentValues = ContentValues().apply()
@@ -178,24 +178,24 @@ class RecordActivity : BaseActivity<ActivityRecordBinding>()
         {
             _activeRecording?.stop()
             _activeRecording = null
-            showUI(RecordStateEnum.IDLE)
+            showUI(ENUM_RECORD_STATE.IDLE)
         }
     }
 
-    private fun showUI(state: RecordStateEnum)
+    private fun showUI(state: ENUM_RECORD_STATE)
     {
         with(_binding)
         {
             when(state)
             {
-                RecordStateEnum.IDLE ->
+                ENUM_RECORD_STATE.IDLE ->
                 {
                     setIsTimerRecord(false)
                     buttonCapture.visible()
                     buttonStop.invisible()
                     buttonCapture.setImageResource(com.lopniv.testapp.R.drawable.ic_record)
                 }
-                RecordStateEnum.RECORDING ->
+                ENUM_RECORD_STATE.RECORDING ->
                 {
                     setIsTimerRecord(true)
                     buttonStop.visible()

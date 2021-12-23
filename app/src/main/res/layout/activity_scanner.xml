@@ -24,10 +24,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/guideLine"
+                android:id="@+id/textViewTitleScan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:text="@string/TEXT_SCAN_QR_OR_BARCODE"
                 android:textAlignment="center"
                 android:textColor="@color/WHITE"
@@ -38,15 +39,92 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="50dp"
+                android:id="@+id/imageView1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:background="@drawable/background_shape"
+                android:paddingBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewTitleScan"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideLine" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_shape"
+                android:paddingBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView1"
+                app:layout_constraintEnd_toStartOf="@id/textViewTitleScan"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_shape"
+                android:paddingBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewTitleScan"/>
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_shape"
+                android:paddingBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageView3"
+                app:layout_constraintStart_toEndOf="@id/imageView2"
+                app:layout_constraintTop_toTopOf="@id/guideLineCenterVertical"/>
+
+            <ImageView
+                android:id="@+id/imageViewTopLeftCorner"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_corner"
+                app:layout_constraintTop_toTopOf="@id/imageView2"
+                app:layout_constraintStart_toEndOf="@id/imageView2"/>
+
+            <ImageView
+                android:id="@+id/imageViewTopRightCorner"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_corner"
+                android:rotation="90"
+                app:layout_constraintTop_toTopOf="@id/imageView3"
+                app:layout_constraintEnd_toStartOf="@id/imageView3"/>
+
+            <ImageView
+                android:id="@+id/imageViewBottomRightCorner"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_corner"
+                android:rotation="180"
+                app:layout_constraintEnd_toStartOf="@id/imageView3"
+                app:layout_constraintBottom_toTopOf="@id/imageView4"/>
+
+            <ImageView
+                android:id="@+id/imageViewBottomLeftCorner"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_corner"
+                android:rotation="270"
+                app:layout_constraintStart_toEndOf="@id/imageView2"
+                app:layout_constraintBottom_toTopOf="@id/imageView4"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideLineCenterVertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintGuide_percent="0.5"/>
 
             <ImageView
                 android:id="@+id/imageViewClose"
